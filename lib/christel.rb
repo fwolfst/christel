@@ -1,5 +1,2 @@
-require "christel/version"
-
-module Christel
-  # Your code goes here...
-end
+require 'christel/version'
+require 'christel/pattern'

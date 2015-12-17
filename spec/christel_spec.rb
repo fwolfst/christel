@@ -5,7 +5,7 @@ describe Christel do
     expect(Christel::VERSION).not_to be nil
   end
 
-  it 'does something useful' do
-    expect(false).to eq(true)
+  it 'defines a Pattern' do
+    expect(Christel::Pattern).not_to be nil
   end
 end
