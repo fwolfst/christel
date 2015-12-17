@@ -14,4 +14,11 @@ describe Christel::Pattern do
       expect(@pattern.count_stitches).to eql(0)
     end
   end
+
+  describe 'add_stitch' do
+    it 'increases number of total stitches' do
+      @pattern.add_stitch Christel::Stitch.new(:ch)
+      expect(@pattern.count_stitches).to eql(1)
+    end
+  end
 end
