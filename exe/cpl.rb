@@ -12,6 +12,10 @@ opt_parser = OptionParser.new do |opt|
   opt.separator ""
   opt.separator "OPTIONS"
 
+  opt.on("-d", "--debug", "print debug info, like the parsed tree.") do
+    options[:debug] = true
+  end
+
   opt.on_tail("-h", "--help", "Show this message") do
     puts opt
     puts
@@ -40,5 +44,19 @@ if tree.nil?
   puts_parser_error cpl_parser, input
   exit 1
 else
-  puts tree.inspect
+  if options[:debug]
+    puts "Debugging: tree.inspect:"
+    puts tree.inspect
+    puts "-" * 6
+    pattern = tree.make_pattern
+    puts "Debugging: pattern.inspect:"
+    puts pattern.inspect
+    puts "-" * 6
+    puts "Debugging: pattern.stitches.inspect:"
+    puts pattern.stitches.inspect
+  else
+    STDERR.puts "Nothing implemented"
+  end
 end
+
+exit 0

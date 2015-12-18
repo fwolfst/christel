@@ -1,9 +1,30 @@
 grammar CPLGrammar
   rule pattern
-    line+
+    line+ {
+      def make_pattern
+        pattern = Christel::Pattern.new("unnamed")
+        elements.each do |e|
+          e.operate_on pattern
+        end
+        pattern
+      end
+    }
   end
 
   rule line
-    "\n"
+    stitch {
+      def operate_on pattern
+        stitch_elem = Christel::Stitch.new(text_value.to_sym)
+        pattern.add_stitch stitch_elem
+      end
+    } / "\n" {
+      def operate_on pattern
+        # Nothing to do
+      end
+    }
+  end
+
+  rule stitch
+    "ch"
   end
 end
