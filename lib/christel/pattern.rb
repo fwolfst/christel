@@ -13,6 +13,9 @@ module Christel
     end
 
     def add_stitch(stitch)
+      if last_stitch = stitches.last
+        stitch.predecessor = last_stitch
+      end
       @stitches << stitch
     end
 

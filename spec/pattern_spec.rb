@@ -20,6 +20,20 @@ describe Christel::Pattern do
       @pattern.add_stitch Christel::Stitch.new(:ch)
       expect(@pattern.count_stitches).to eql(1)
     end
+
+    it 'adds stitch at end, for @stitches.last' do
+      stitch = Christel::Stitch.new(:ch)
+      @pattern.add_stitch stitch
+      expect(@pattern.stitches.last).to eql stitch
+    end
+
+    it 'sets predecessors' do
+      stitch = Christel::Stitch.new(:ch)
+      @pattern.add_stitch stitch
+      stitch2 = Christel::Stitch.new(:ch)
+      @pattern.add_stitch stitch2
+      expect(@pattern.stitches.last.predecessor).to eql stitch
+    end
   end
 
   describe '#next_destination_stitch' do
