@@ -1,0 +1,9 @@
+grammar CPLGrammar
+  rule pattern
+    line+
+  end
+
+  rule line
+    "\n"
+  end
+end
