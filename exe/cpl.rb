@@ -16,6 +16,10 @@ opt_parser = OptionParser.new do |opt|
     options[:debug] = true
   end
 
+  opt.on("-r", "--render FILENAME", "render to FILENAME.dot and FILENAME.png") do |render_filename|
+    options[:render_filename] = render_filename
+  end
+
   opt.on_tail("-h", "--help", "Show this message") do
     puts opt
     puts
@@ -43,20 +47,23 @@ if tree.nil?
   # consider using the logger
   puts_parser_error cpl_parser, input
   exit 1
-else
-  if options[:debug]
-    puts "Debugging: tree.inspect:"
-    puts tree.inspect
-    puts "-" * 6
-    pattern = tree.make_pattern
-    puts "Debugging: pattern.inspect:"
-    puts pattern.inspect
-    puts "-" * 6
-    puts "Debugging: pattern.stitches.inspect:"
-    puts pattern.stitches.inspect
-  else
-    STDERR.puts "Nothing implemented"
-  end
+end
+
+pattern = tree.make_pattern
+if options[:debug]
+  puts "Debugging: tree.inspect:"
+  puts tree.inspect
+  puts "-" * 6
+  puts "Debugging: pattern.inspect:"
+  puts pattern.inspect
+  puts "-" * 6
+  puts "Debugging: pattern.stitches.inspect:"
+  puts pattern.stitches.inspect
+end
+
+if options[:render_filename]
+  renderer = Christel::DotRenderer.new
+  renderer.render(pattern, options[:render_filename])
 end
 
 exit 0
