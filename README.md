@@ -1,8 +1,9 @@
 # Christel
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/christel`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is my second take on christel, a ruby library and specification of a
+language to represent, work with and render crochet patterns.
 
-TODO: Delete this and the text above, and describe your gem
+I will gradually move code over here, but investible time is scarce.
 
 ## Installation
 
@@ -23,6 +24,8 @@ Or install it yourself as:
 ## Usage
 
 TODO: Write usage instructions here
+
+## Stuff included
 
 ## Development
 
