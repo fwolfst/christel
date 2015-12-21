@@ -49,11 +49,13 @@ if tree.nil?
   exit 1
 end
 
-pattern = tree.make_pattern
+pattern = nil
+
 if options[:debug]
   puts "Debugging: tree.inspect:"
   puts tree.inspect
   puts "-" * 6
+  pattern = tree.make_pattern
   puts "Debugging: pattern.inspect:"
   puts pattern.inspect
   puts "-" * 6
@@ -62,6 +64,7 @@ if options[:debug]
 end
 
 if options[:render_filename]
+  pattern = tree.make_pattern if pattern.nil?
   renderer = Christel::DotRenderer.new
   renderer.render(pattern, options[:render_filename])
 end
