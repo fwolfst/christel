@@ -17,11 +17,34 @@ grammar CPLGrammar
         stitch_elem = Christel::Stitch.new(text_value.to_sym)
         pattern.add_stitch stitch_elem
       end
-    } / "\n" {
+    } / num_stitches {
       def operate_on pattern
-        # Nothing to do
+        stitch_type = elements[1].text_value.to_sym
+        elements[0].eval.times do ||
+          pattern.add_stitch Christel::Stitch.new(stitch_type)
+        end
+      end
+    }/ comment / "\n" {
+      def operate_on pattern
+        # End of line, nothing to do.
       end
     }
+  end
+
+  rule comment
+    '#' [^\n]*
+  end
+
+  rule number
+    [0-9]* {
+      def eval
+        text_value.to_i
+      end
+    }
+  end
+
+  rule num_stitches
+    number stitch
   end
 
   rule stitch
