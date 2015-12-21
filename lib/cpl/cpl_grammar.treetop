@@ -24,7 +24,12 @@ grammar CPLGrammar
           pattern.add_stitch Christel::Stitch.new(stitch_type)
         end
       end
-    }/ comment / "\n" {
+    }/ comment {
+      def operate_on pattern
+        # End of line, nothing to do.
+      end
+    }
+    / "\n" {
       def operate_on pattern
         # End of line, nothing to do.
       end
@@ -32,7 +37,7 @@ grammar CPLGrammar
   end
 
   rule comment
-    '#' [^\n]*
+    '#' [^\n]* [\n]?
   end
 
   rule number
@@ -44,7 +49,7 @@ grammar CPLGrammar
   end
 
   rule num_stitches
-    number stitch
+    number " "? stitch
   end
 
   rule stitch
