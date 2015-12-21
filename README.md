@@ -23,9 +23,36 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
-
 ## Stuff included
+
+Currently there is only one tool, `cpl.rb` which allows you to parse and
+render .cpl pattern files.
+
+Invoke it with --help to see the options.
+
+## CPL the Crochet/Christel Pattern Language
+
+Optimally, one day CPL is the standard form to write down (standard) crochet
+patterns.
+
+Of course, not all patterns can be formalized easily, but I hope to cover
+a good 10\% of the patterns out there.
+
+Currently, the CPL assumes that you work in rings and only supports chain
+stitches :)
+
+While the treetop grammar reads relatively easy (ignore the parts in curly brackets, `{ ... }`) here is a run-down:
+
+### General syntax
+
+And examples ...
+
+## How this could help
+
+  - finally a repository of truly free crochet patterns
+  - unified formalism for crochet patterns
+  - visualize patterns to have it easy
+  - translate patterns into other languages
 
 ## Development
 
