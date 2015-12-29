@@ -16,11 +16,11 @@ module Christel
         # for predecessor
         if predecessor = stitch_map[stitch.predecessor]
           # weight len color
-          graph.add_edges(node, predecessor)
+          graph.add_edges(predecessor, node)
         end
         # for destination
         if destination = stitch_map[stitch.destination]
-          graph.add_edges(node, destination)
+          graph.add_edges(node, destination, color: 'red')
                         #, .., weight, len, color)
         end
       end
