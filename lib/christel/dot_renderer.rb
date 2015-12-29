@@ -19,7 +19,10 @@ module Christel
           graph.add_edges(node, predecessor)
         end
         # for destination
-        # graph.add_edges(node, .., weight, len, color)
+        if destination = stitch_map[stitch.destination]
+          graph.add_edges(node, destination)
+                        #, .., weight, len, color)
+        end
       end
       graph.output(dot: "#{filename}.dot")
       graph.output(use: 'neato', png: "#{filename}.png")

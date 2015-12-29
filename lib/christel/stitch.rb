@@ -11,5 +11,10 @@ module Christel
       @destination = destination
       @stitched_by = []
     end
+
+    def into(other_stitch)
+      @destination = other_stitch
+      other_stitch.stitched_by << self
+    end
   end
 end
