@@ -36,8 +36,21 @@ describe Christel::Pattern do
     end
   end
 
+  describe '#in_ring wires up a ring' do
+    it 'creates a ring stitch' do
+      @pattern.in_ring do |pattern|
+      end
+      expect(@pattern.stitches.count).to eql 1
+      expect(@pattern.stitches.first.type).to eql :ring
+    end
+  end
+
   describe '#next_destination_stitch' do
     it 'is nil for empty pattern' do
+      expect(@pattern.next_destination_stitch).to be nil
+    end
+
+    it 'is the first stitch in ring (after ring)' do
       expect(@pattern.next_destination_stitch).to be nil
     end
   end
