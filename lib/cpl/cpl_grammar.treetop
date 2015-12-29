@@ -14,13 +14,18 @@ grammar CPLGrammar
   end
 
   rule instructions
+    instruction+ <InstructionsNode>
+  end
+
+  rule instruction
     # Composed of instructions
     # ch, 2 ch, ch 2
     # 6 ch in ring
     # 6 * (ch, 2 ch)
-    num_stitch_in_ring /
+    ", "?
+    (num_stitch_in_ring /
     number_stitch /
-    stitch_type
+    stitch_type ) <InstructionNode>
   end
 
   rule num_stitch_in_ring
@@ -32,7 +37,7 @@ grammar CPLGrammar
   end
 
   rule stitch_type
-    "ch"  <StitchTypeNode> / "sc" <StitchTypeNode>
+    "ch"  <StitchTypeNode> / "sc" <StitchTypeNode> / "slt" <StitchTypeNode>
   end
 
   rule number_stitch
