@@ -1,58 +1,45 @@
 grammar CPLGrammar
   rule pattern
-    line+ {
-      def make_pattern
-        pattern = Christel::Pattern.new("unnamed")
-        elements.each do |e|
-          e.operate_on pattern
-        end
-        pattern
-      end
-    }
+    line+ <PatternNode>
   end
 
   rule line
-    stitch {
-      def operate_on pattern
-        stitch_elem = Christel::Stitch.new(text_value.to_sym)
-        pattern.add_stitch stitch_elem
-      end
-    } / num_stitches {
-      def operate_on pattern
-        stitch_type = elements[1].text_value.to_sym
-        elements[0].eval.times do ||
-          pattern.add_stitch Christel::Stitch.new(stitch_type)
-        end
-      end
-    }/ comment {
-      def operate_on pattern
-        # End of line, nothing to do.
-      end
-    }
-    / "\n" {
-      def operate_on pattern
-        # End of line, nothing to do.
-      end
-    }
+    instructions+ <InstructionsNode>
+    / comment # Comments okay
+    / "\n"    # Empty lines okay
   end
 
   rule comment
     '#' [^\n]* [\n]?
   end
 
+  rule instructions
+    # Composed of instructions
+    # ch, 2 ch, ch 2
+    # 6 ch in ring
+    # 6 * (ch, 2 ch)
+    num_stitch_in_ring /
+    number_stitch /
+    stitch_type
+  end
+
+  rule num_stitch_in_ring
+    number " " stitch_type " in ring" <InRingNode>
+  end
+
+  rule loop
+    number "* (" instructions ")"
+  end
+
+  rule stitch_type
+    "ch"  <StitchTypeNode> / "sc" <StitchTypeNode>
+  end
+
+  rule number_stitch
+    number " " stitch_type <NumberStitchNode>
+  end
+
   rule number
-    [0-9]* {
-      def eval
-        text_value.to_i
-      end
-    }
-  end
-
-  rule num_stitches
-    number " "? stitch
-  end
-
-  rule stitch
-    "ch"
+    [0-9]* <NumberNode>
   end
 end
