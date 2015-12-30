@@ -37,7 +37,7 @@ grammar CPLGrammar
   end
 
   rule stitch_type
-    "ch"  <StitchTypeNode> / "sc" <StitchTypeNode> / "slt" <StitchTypeNode>
+    "ch"  <StitchTypeNode> / "sc" <StitchTypeNode> / "slst" <StitchTypeNode>
   end
 
   rule number_stitch
