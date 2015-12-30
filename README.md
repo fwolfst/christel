@@ -5,6 +5,8 @@ language to represent, work with and render crochet patterns.
 
 I will gradually move code over here, but investible time is scarce.
 
+Documentation will ship when the language spec settles.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -23,6 +25,8 @@ Or install it yourself as:
 
 ## Usage
 
+**christel** comes with a main executable, `cpl` which is used to debug the CPL and render patterns.
+
 ## Stuff included
 
 Currently there is only one tool, `cpl.rb` which allows you to parse and
@@ -38,14 +42,40 @@ patterns.
 Of course, not all patterns can be formalized easily, but I hope to cover
 a good 10\% of the patterns out there.
 
-Currently, the CPL assumes that you work in rings and only supports chain
-stitches :)
+Currently, the CPL assumes that you work in rings.
 
-While the treetop grammar reads relatively easy (ignore the parts in curly brackets, `{ ... }`) here is a run-down:
+While the treetop grammar reads relatively easy (ignore the parts in sharp brackets, `< ... >`) here is a run-down:
 
 ### General syntax
 
-And examples ...
+The file can contain comments, any line starting with a `#` is ignored.
+
+    # This is a comment
+
+Following stitches are supported:
+
+  - Chain Stitch: `ch`
+  - Magical Ring
+  - Single Crochet: `sc`
+  - Slip Stitch: `slst`
+
+Multiple stitches of the same type are denoted by the corresponding number and the (short) stitch type:
+
+    # This is a comment
+    10 ch
+    # Ten Chain Stitches
+
+and connected by commata (`,`):
+
+    # This is ...
+    10 ch, 4 sc
+
+Stitching in magical ring works a little bit different:
+
+    # Comment of ring example
+    6 sc in ring, slst
+
+.
 
 ## How this could help
 
