@@ -20,7 +20,7 @@ module Christel
       if last_stitch = stitches.last
         stitch.predecessor = last_stitch
       end
-      if @destination
+      if @destination && stitch.type != :ch
         stitch.into(@destination)
         advance_destination
       end
